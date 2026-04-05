@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ASA Electrical LTD — Property Quotes</title>
+
+  <!-- WhatsApp / Open Graph -->
+  <meta property="og:title" content="ASA Electrical LTD — Property Quotes"/>
+  <meta property="og:description" content="Property damage repair quotes and maintenance estimates by ASA Electrical LTD."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="ASA Electrical LTD"/>
+  <meta name="twitter:card" content="summary"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #2563eb;
+      --gold: #f59e0b;
+      --gold-light: #fcd34d;
+      --cream: #faf8f4;
+      --muted: #6b7280;
+      --border: #e5e0d8;
+      --shadow: 0 4px 24px rgba(13,27,42,0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "DM Sans", sans-serif; background: var(--cream); color: var(--navy); min-height: 100vh; }
+
+    header {
+      background: var(--navy); color: white; padding: 32px 60px;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    }
+    .logo-block { display: flex; align-items: center; gap: 18px; }
+    .logo-icon {
+      width: 66px; height: 66px; border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 16px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; padding: 6px; background: #0d1b2a;
+    }
+    .logo-icon svg { width: 100%; height: 100%; }
+    .logo-text h1 { font-family: "Playfair Display", serif; font-size: 1.65rem; color: white; line-height: 1.1; }
+    .logo-text p { font-size: 0.76rem; color: var(--gold-light); letter-spacing: 0.13em; text-transform: uppercase; margin-top: 5px; }
+    .gold-strip { height: 5px; background: linear-gradient(90deg, var(--blue), var(--gold), var(--blue)); }
+
+    main { max-width: 960px; margin: 0 auto; padding: 52px 40px 80px; }
+
+    .page-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem; margin-bottom: 8px;
+    }
+    .page-subtitle { font-size: 0.90rem; color: var(--muted); margin-bottom: 44px; }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .quote-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; box-shadow: var(--shadow);
+      text-decoration: none; color: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex; flex-direction: column;
+    }
+    .quote-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(13,27,42,0.15); }
+
+    .card-top {
+      background: var(--navy); padding: 22px 24px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .card-icon {
+      width: 42px; height: 42px; background: rgba(255,255,255,0.10);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .card-ref { font-size: 0.72rem; color: var(--gold-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; }
+    .card-name { font-family: "Playfair Display", serif; font-size: 1rem; color: white; }
+
+    .card-body { padding: 20px 24px; flex: 1; }
+    .card-address { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag {
+      font-size: 0.70rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.07em;
+    }
+    .tag-damage { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .tag-furniture { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .tag-repair { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+    .card-total {
+      border-top: 1px solid var(--border); padding-top: 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .card-total .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; }
+    .card-total .amount { font-family: "Playfair Display", serif; font-size: 1.2rem; color: var(--navy); font-weight: 700; }
+
+    .card-footer {
+      background: #f8f7f4; border-top: 1px solid var(--border);
+      padding: 12px 24px; font-size: 0.78rem; color: var(--blue);
+      font-weight: 500; display: flex; align-items: center; gap: 6px;
+    }
+
+    .coming-soon {
+      opacity: 0.55; pointer-events: none;
+    }
+    .coming-soon .card-footer { color: var(--muted); }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 24px 40px; font-size: 0.78rem;
+      letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    footer span { color: var(--gold-light); }
+    .footer-logo { width: 28px; height: 28px; opacity: 0.6; }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+      main { padding: 32px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="logo-icon">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="32" width="44" height="26" rx="2" fill="white"/>
+        <polygon points="32,8 58,34 6,34" fill="#2563eb"/>
+        <rect x="26" y="42" width="12" height="16" rx="2" fill="#1e3a5f"/>
+        <polygon points="36,14 28,30 34,30 28,46 40,26 34,26 40,14" fill="#f59e0b"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <h1>ASA Electrical LTD</h1>
+      <p>Property Services &amp; Maintenance</p>
+    </div>
+  </div>
+</header>
+<div class="gold-strip"></div>
+
+<main>
+  <h2 class="page-title">Property Quotes</h2>
+  <p class="page-subtitle">All damage repair and maintenance quotes issued by ASA Electrical LTD</p>
+
+  <div class="quotes-grid">
+
+    <!-- Quote: Brian Morais -->
+    <a class="quote-card" href="quote_brian_morais_vantage_place.html">
+      <div class="card-top">
+        <div class="card-icon">🏠</div>
+        <div>
+          <div class="card-ref">QT-2026-BM001</div>
+          <div class="card-name">Brian Morais</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-address">Vantage Place<br/>London, W8 6AQ</div>
+        <div class="card-tags">
+          <span class="tag tag-damage">🐾 Dog Damage</span>
+          <span class="tag tag-repair">Skirting Repair</span>
+          <span class="tag tag-furniture">Furniture</span>
+        </div>
+        <div class="card-total">
+          <span class="label">Total inc. VAT</span>
+          <span class="amount">£505.98</span>
+        </div>
+      </div>
+      <div class="card-footer">→ View Full Quote</div>
+    </a>
+
+    <!-- Placeholder: Property 117 -->
+    <a class="quote-card coming-soon" href="#">
+      <div class="card-top">
+        <div class="card-icon">🏠</div>
+        <div>
+          <div class="card-ref">QT-2026-117</div>
+          <div class="card-name">Property 117</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-address">Address on file</div>
+        <div class="card-tags">
+          <span class="tag tag-repair">Repair Works</span>
+        </div>
+        <div class="card-total">
+          <span class="label">Total inc. VAT</span>
+          <span class="amount">—</span>
+        </div>
+      </div>
+      <div class="card-footer">Coming soon</div>
+    </a>
+
+    <!-- Placeholder: Property 109 -->
+    <a class="quote-card coming-soon" href="#">
+      <div class="card-top">
+        <div class="card-icon">🏠</div>
+        <div>
+          <div class="card-ref">QT-2026-109</div>
+          <div class="card-name">Property 109</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-address">Address on file</div>
+        <div class="card-tags">
+          <span class="tag tag-repair">Repair Works</span>
+        </div>
+        <div class="card-total">
+          <span class="label">Total inc. VAT</span>
+          <span class="amount">—</span>
+        </div>
+      </div>
+      <div class="card-footer">Coming soon</div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <svg class="footer-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="32" width="44" height="26" rx="2" fill="white" opacity="0.6"/>
+    <polygon points="32,8 58,34 6,34" fill="#2563eb" opacity="0.8"/>
+    <rect x="26" y="42" width="12" height="16" rx="2" fill="#1e3a5f"/>
+    <polygon points="36,14 28,30 34,30 28,46 40,26 34,26 40,14" fill="#f59e0b"/>
+  </svg>
+  <span>ASA Electrical LTD</span> &nbsp;·&nbsp; Property Services &amp; Maintenance
+</footer>
+
+</body>
+</html>
